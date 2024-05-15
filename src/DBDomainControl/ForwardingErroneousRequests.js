@@ -4,7 +4,7 @@ const bot=require("../TELEGRAM BOT CONNECTION/BotConnection")
 const {Markup}=require("telegraf")
 const SendEmail=require("../SendEmail/SendEmail")
 
-// Ana işlev, belirli aralıklarla çalışacak
+
 async function ForwardingErroneousRequests() {
   
     await fetchEveryMinuteForDomainsWithStatusOver400().then(()=>{
@@ -13,7 +13,7 @@ async function ForwardingErroneousRequests() {
   
 }
 setInterval(async () => {
-  // fetchEveryMinute fonksiyonunu çalıştır ve domains dizisini parametre olarak geç
+ 
   await fetchEveryMinuteForDomainsWithStatusOver400();
 }, 60000); 
 
@@ -82,7 +82,7 @@ async function fetchEveryMinuteForDomainsWithStatusOver400() {
                 statusCodes: {
                     every: {
                         statusCode: {
-                            gt: 399 // 400'den büyük olan durum kodlarına sahip her bir status code
+                            gt: 399 // 400'den büyük 
                         }
                     }
                 }
@@ -120,18 +120,15 @@ async function fetchEveryMinuteForDomainsWithStatusOver400() {
 
 
               try {
-                // DeleteDomain dizisini oluşturma
+                // silinecek diziyi oluşturma
                 DeleteDomain = DomainForFeedbackArray.filter(item1 => 
                   !DomainsArray.some(item2 => item1.domainId === item2.domainId && item1.name === item2.name)
                 );    
               
                 
-                // Değişkenlerin içeriklerini kontrol etme
-                console.log("DomainForFeedbackArray", DomainForFeedbackArray);
-                console.log("DomainsArray", DomainsArray);
-                console.log("DeleteDomain", DeleteDomain);
+             
               
-                // DeleteDomain dizisinin boş olup olmadığını kontrol etme
+              
                 if (DeleteDomain.length > 0) {
                   console.log("DeleteDomain boş değil, mesaj atma işlemi başlıyor...");
                   
@@ -184,10 +181,10 @@ async function fetchEveryMinuteForDomainsWithStatusOver400() {
                 const message = messageHistoryy[messageId];
               
                 if (message) {
-                  // Mesajı e-posta ile gönderin (bu kısımda e-posta gönderme kodunu eklemeniz gerekiyor)
+                
                   console.log(`E-posta gönderiliyor: ${message}`);
                   await SendEmail(message,ctx)
-                  await ctx.reply('Mesaj e-posta ile gönderildi!'); // E-posta gönderildikten sonra kullanıcıya bu mesaj gider
+                  await ctx.reply('Mesaj e-posta ile gönderildi!'); 
                 } else {
                   await ctx.reply('Mesaj bulunamadı!');
                 }
@@ -205,13 +202,13 @@ async function fetchEveryMinuteForDomainsWithStatusOver400() {
             const GetTime=async(timestamp)=>{
               
 
-              // Tarih nesnesi oluştur
+           
                   const date = new Date(timestamp);
 
-                      // Şu anki zamanı al
+                     
                 const now = new Date();
 
-                      // Dakika farkını hesapla
+                    
                     const minutesPassed = Math.round((now - date) / (1000 * 60));
 
                     console.log(`${minutesPassed} dakika geçti.`);
@@ -229,7 +226,7 @@ async function fetchEveryMinuteForDomainsWithStatusOver400() {
 
 
 
-// Ana işlevi çalıştır
+
 module.exports=ForwardingErroneousRequests
 
 
