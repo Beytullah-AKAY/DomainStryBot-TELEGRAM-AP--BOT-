@@ -5,7 +5,7 @@ const axios =require ('axios');
 
 const DomainAxiosRequestsWithBullMQ = async () => {
   
-  // Redis bağlantısı için yapılandırma
+  
   const redisConfig = {
     host: 'redis-14359.c322.us-east-1-2.ec2.redns.redis-cloud.com',
     port: 14359,
@@ -18,11 +18,8 @@ const DomainAxiosRequestsWithBullMQ = async () => {
   const connection = new IORedis(redisConfig);
   connection.on('error', (err) => {
     console.error('Redis bağlantı hatası:', err);
-    // Hata durumunda bağlantıyı yeniden kurmak için ek kod ekleyebilirsiniz.
   });
-  // İlk işçi için kuyruk oluştur
   const myQueue3 = await new Queue('myQueue3', { connection });
-  // İşlemleri kuyruklara ekleme
  
 
 
@@ -68,10 +65,10 @@ for (let domain of Domains) {
     }
    const sameNameDomains = Domains.filter((item) => item.name === name);
 sameNameDomains.forEach((domain) => {
-  domain.status = status; // status kodunu doğrudan güncelle
+  domain.status = status; 
 });
     try {
-      // Eğer domain mevcut değilse, yeni bir domain kaydı oluşturalım
+      
       await Promise.all(sameNameDomains.map(async (domain) => {
         await database.domainStatusCode.create({
           data: {
@@ -93,19 +90,19 @@ sameNameDomains.forEach((domain) => {
   },
     { connection }
   );
-  // İş tamamlandığında loglama
+ 
   worker3.on('completed',async job => {
 
     console.log('İş tamamlandı:', job.id);
   });
 
-  // İş başarısız olduğunda loglama
+  
   worker3.on('failed', (job, err) => {
     console.error('İş başarısız oldu:', err);
   });
 
  
-  // İlk kez bekleyen iş sayısını kontrol edin
+  
   console.log('Tüm işlemler tamamlandı.');
 };
 
