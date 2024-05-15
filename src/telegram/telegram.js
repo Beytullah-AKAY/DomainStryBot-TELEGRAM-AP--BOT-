@@ -11,7 +11,7 @@
             let waitingForCommand={}
 
             bot.start((ctx) => {
-                // Eğer kullanıcı zaten kayıtlı değilse
+               
                  ctx.reply("DomainSentryBOT ile domain adreslerinizin Durumlarını anlık kontrol etmek isterseniz.Mail adresinizi giriniz:")
                 
             });
@@ -36,7 +36,7 @@
                             await SendCommandButtons(ctx,chatId);
                         } catch (error) {
                             console.error('DbUserSave fonksiyonunda hata oluştu:', error);
-                            // Hata durumunda kullanıcıya bilgilendirme mesajı gönderebilir veya başka bir işlem yapabilirsiniz
+                           
                         }
                     } else {
                         await SendRegisterButtons(ctx,chatId);
@@ -178,10 +178,10 @@
             const message = messageHistory[messageId];
           
             if (message) {
-              // Mesajı e-posta ile gönderin (bu kısımda e-posta gönderme kodunu eklemeniz gerekiyor)
+            
               console.log(`E-posta gönderiliyor: ${message}`);
               await SendEmail(message,ctx)
-              await ctx.reply('Mesaj e-posta ile gönderildi!'); // E-posta gönderildikten sonra kullanıcıya bu mesaj gider
+              await ctx.reply('Mesaj e-posta ile gönderildi!'); 
             } else {
               await ctx.reply('Mesaj bulunamadı!');
             }
