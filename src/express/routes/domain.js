@@ -20,7 +20,7 @@ const domainHistory=async (req, res) => {
     const endIndex = startIndex + page_size;
     const items = domainHistory.slice(startIndex, endIndex);
 
-    // chatid değerlerini String'e dönüştürme
+   
     const formattedItems = items.map(item => ({
         ...item,
         chatid: item.chatid.toString()
