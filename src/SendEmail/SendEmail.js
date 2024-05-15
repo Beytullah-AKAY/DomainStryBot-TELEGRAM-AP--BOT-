@@ -6,11 +6,11 @@ const bot = require('../TELEGRAM BOT CONNECTION/BotConnection');
 const SendEmail=async(message,ctx)=>{
       
     
-    // SMTP ayarları
+    
     const transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
         port: 587,
-        secure: false, // Use `true` for port 465, `false` for all other ports
+        secure: false, 
         auth: {
           user: 'larkvinanemo@gmail.com',
           pass: process.env.EMAIL_KEY,
@@ -41,7 +41,6 @@ const SendEmail=async(message,ctx)=>{
 
 
 
-    // Mail gönderme fonksiyonu
     async function sendMail(to, subject, text) {
         try {
             // Mail bilgileri
