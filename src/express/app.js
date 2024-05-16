@@ -7,9 +7,9 @@ const Express=async()=>{
 
     const API_KEY = process.env.API_KEY
 
-    app.use('/api', Routes); // Rotaları ekle
+    app.use('/api', Routes); 
 
-    const port = process.env.PORT || 3000; // Portu değişkene ata
+    const port = process.env.PORT || 3000; 
     app.listen(port, () => {
         console.log(`Server ${port} portunda dinliyor...`);
     });
